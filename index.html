@@ -20,9 +20,13 @@
             border: 1px solid white;
             box-sizing: border-box;
             text-align: center;
-            line-height: 33.33vh;
+            line-height: 1.2;
             font-size: 36px;
             cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
         }
         .result {
             text-align: center;
@@ -66,7 +70,17 @@
             buttonsText.forEach(text => {
                 const button = document.createElement('div');
                 button.className = 'button';
-                button.textContent = text;
+                
+                // Create text content based on the button
+                let buttonContent = text;
+                if (text === '5C') buttonContent = '5C<br>11';
+                else if (text === '7C') buttonContent = '7C<br>12';
+                else if (text === '7H') buttonContent = '7H<br>13';
+                else if (text === '9D') buttonContent = '9D<br>14';
+                else if (text === '7D') buttonContent = '7D<br>15';
+                else if (text === 'R') buttonContent = 'R';
+                
+                button.innerHTML = buttonContent;
                 button.onclick = () => action(text);
                 buttonsContainer.appendChild(button);
             });

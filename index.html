@@ -12,7 +12,6 @@
             padding: 0;
             height: 100vh;
             overflow: hidden;
-            touch-action: none;
         }
         .button {
             width: 50%;
@@ -45,51 +44,20 @@
             display: flex;
             flex-wrap: wrap;
         }
-        .hide {
-            display: none !important;
+        #reset-button {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 100px;
+            height: 100px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            z-index: 1000;
         }
     </style>
     <script>
         let button1Pressed = null;
-        let touchStartY1 = 0;
-        let touchStartY2 = 0;
-        let touchEndY1 = 0;
-        let touchEndY2 = 0;
-        let isTwoFingerTouch = false;
-
-        // Add touch event listeners
-        document.addEventListener('touchstart', function(e) {
-            if (e.touches.length === 2) {
-                isTwoFingerTouch = true;
-                touchStartY1 = e.touches[0].clientY;
-                touchStartY2 = e.touches[1].clientY;
-            }
-        }, { passive: false });
-
-        document.addEventListener('touchmove', function(e) {
-            if (isTwoFingerTouch && e.touches.length === 2) {
-                touchEndY1 = e.touches[0].clientY;
-                touchEndY2 = e.touches[1].clientY;
-            }
-        }, { passive: false });
-
-        document.addEventListener('touchend', function(e) {
-            if (isTwoFingerTouch) {
-                handleSwipe();
-                isTwoFingerTouch = false;
-            }
-        }, { passive: false });
-
-        function handleSwipe() {
-            const swipeDistance1 = touchStartY1 - touchEndY1;
-            const swipeDistance2 = touchStartY2 - touchEndY2;
-            
-            // Check if both fingers swiped down at least 50px
-            if (swipeDistance1 > 50 && swipeDistance2 > 50) {
-                console.log('Swipe detected!'); // Debug log
-                reset();
-            }
-        }
 
         function createButtons(buttonsText, action) {
             const buttonsContainer = document.getElementById('buttons-container');
@@ -189,6 +157,7 @@
     <div id="results-container" class="result" style="display: none;">
         <div id="result-label"></div>
     </div>
+    <button id="reset-button" onclick="reset()"></button>
     <script>
         createButtons(["5C", "7C", "7H", "9D", "7D", "R"], onButtonPress);
     </script>

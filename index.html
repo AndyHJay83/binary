@@ -74,7 +74,7 @@
 
         function showResults(button1, button2) {
             const resultLabel = document.getElementById('result-label');
-            resultLabel.innerHTML = getResults(button1, button2).replace('. ', '.<br>');
+            resultLabel.innerHTML = getResults(button1, button2).replace(', ', '<br>');
 
             // Hide the buttons container
             document.getElementById('buttons-container').style.display = 'none';
@@ -87,40 +87,40 @@
             const results = {
                 "5C0": "Empty",
                 "5C1": "Empty",
-                "5C3": "In Hand: 6C. In Head: AS 2C",
+                "5C3": "In Hand: 6C, In Head: AS 2C",
                 "5C5": "Empty",
                 "5C6": "Empty",
-                "5C8": "In Hand: 6C. In Head: 10C",
-                "7C0": "In Hand: 5C. In Head: AH 2H",
-                "7C1": "In Hand: 5C. In Head: AS 2S",
-                "7C3": "In Hand: 5C. In Head: 4C",
-                "7C5": "In Hand: 5C. In Head: 6H 10H",
-                "7C6": "In Hand: 5C. In Head: 6S 10S",
-                "7C8": "In Hand: 5C. In Head: 9C JC KC",
-                "7H0": "In Hand: 7C. In Head: 4H 5H",
-                "7H1": "In Hand: 7C. In Head: 4S 5S",
-                "7H3": "In Hand: 7C. In Head: 3C",
-                "7H5": "In Hand: 7C. In Head: 9H JH KH",
-                "7H6": "In Hand: 7C. In Head: 9S JS KS",
-                "7H8": "In Hand: 7C. In Head: 8C QC",
-                "9D0": "In Hand: 7H. In Head: 3S",
-                "9D1": "In Hand: 7H. In Head: AD 2D 6D",
-                "9D3": "In Hand: 7H. In Head: 3H",
-                "9D5": "In Hand: 7H. In Head: 8S QS",
-                "9D6": "In Hand: 7H. In Head: 10D",
-                "9D8": "In Hand: 7H. In Head: 8H QH",
+                "5C8": "In Hand: 6C, In Head: 10C",
+                "7C0": "In Hand: 5C, In Head: AH 2H",
+                "7C1": "In Hand: 5C, In Head: AS 2S",
+                "7C3": "In Hand: 5C, In Head: 4C",
+                "7C5": "In Hand: 5C, In Head: 6H 10H",
+                "7C6": "In Hand: 5C, In Head: 6S 10S",
+                "7C8": "In Hand: 5C, In Head: 9C JC KC",
+                "7H0": "In Hand: 7C, In Head: 4H 5H",
+                "7H1": "In Hand: 7C, In Head: 4S 5S",
+                "7H3": "In Hand: 7C, In Head: 3C",
+                "7H5": "In Hand: 7C, In Head: 9H JH KH",
+                "7H6": "In Hand: 7C, In Head: 9S JS KS",
+                "7H8": "In Hand: 7C, In Head: 8C QC",
+                "9D0": "In Hand: 7H, In Head: 3S",
+                "9D1": "In Hand: 7H, In Head: AD 2D 6D",
+                "9D3": "In Hand: 7H, In Head: 3H",
+                "9D5": "In Hand: 7H, In Head: 8S QS",
+                "9D6": "In Hand: 7H, In Head: 10D",
+                "9D8": "In Hand: 7H, In Head: 8H QH",
                 "7D0": "Empty",
                 "7D1": "Empty",
-                "7D3": "In Hand: 9D. In Head: 4D 5D",
+                "7D3": "In Hand: 9D, In Head: 4D 5D",
                 "7D5": "Empty",
                 "7D6": "Empty",
-                "7D8": "In Hand: 9D. In Head: JD KD",
+                "7D8": "In Hand: 9D, In Head: JD KD",
                 "R0": "Empty",
                 "R1": "Empty",
-                "R3": "In Hand: 7D. In Head: 3D",
+                "R3": "In Hand: 7D, In Head: 3D",
                 "R5": "Empty",
                 "R6": "Empty",
-                "R8": "In Hand: 7D. In Head: 8D QD"
+                "R8": "In Hand: 7D, In Head: 8D QD"
             };
             return results[button1 + button2] || "No specific result";
         }

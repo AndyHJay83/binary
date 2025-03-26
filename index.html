@@ -100,7 +100,7 @@
             resultLabel.innerHTML = getResults(button1, button2).replace('. ', '.<br>');
 
             // Hide the buttons container
-            document.getElementById('buttons-container').classList.add('hide');
+            document.getElementById('buttons-container').style.display = 'none';
 
             // Show the results container
             document.getElementById('results-container').style.display = 'flex';
@@ -163,13 +163,15 @@
 
         function reset() {
             button1Pressed = null;
-            createButtons(["5C", "7C", "7H", "9D", "7D", "R"], onButtonPress);
-
+            
             // Show the buttons container
-            document.getElementById('buttons-container').classList.remove('hide');
+            document.getElementById('buttons-container').style.display = 'flex';
 
             // Hide the results container
             document.getElementById('results-container').style.display = 'none';
+
+            // Reset to initial buttons
+            createButtons(["5C", "7C", "7H", "9D", "7D", "R"], onButtonPress);
         }
     </script>
 </head>

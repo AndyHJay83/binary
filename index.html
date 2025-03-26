@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            font-family: 'Arial', sans-serif;
+            margin: 0; /* Remove default body margin */
+        }
+        .button {
+            width: 33.33%;
+            height: 200px;
+            display: inline-block;
+            border: 1px solid white;
+            box-sizing: border-box;
+            text-align: center;
+            line-height: 200px;
+            font-size: 36px;
+            cursor: pointer;
+        }
+        .result {
+            text-align: center;
+            font-size: 24px;
+            margin-top: 25px;
+            line-height: 1.8;
+        }
+        #result-label {
+            margin: 20px;
+            padding: 20px;
+        }
+        #reset-button {
+            width: 100%;
+            height: 50px;
+            background-color: #000;
+            color: white;
+            font-size: 28px;
+            cursor: pointer;
+            position: fixed;
+            bottom: 0;
+            z-index: 1; /* Ensure it's above other elements */
+        }
+    </style>
+    <script>
+        let button1Pressed = null;
+
+        function createButtons(buttonsText, action) {
+            const buttonsContainer = document.getElementById('buttons-container');
+            buttonsContainer.innerHTML = '';
+
+            buttonsText.forEach(text => {
+                const button = document.createElement('div');
+                button.className = 'button';
+                button.textContent = text;
+                button.onclick = () => action(text);
+                buttonsContainer.appendChild(button);
+            });
+        }
+
+        function showResults(button1, button2) {
+            const resultLabel = document.getElementById('result-label');
+            resultLabel.innerHTML = getResults(button1, button2).replace('. ', '.<br>');
+
+            // Show the results container
+            document.getElementById('results-container').style.display = 'block';
+        }
+
+        function getResults(button1, button2) {
+            const results = {
+                "5C0": "Empty",
+                "5C1": "Empty",
+                "5C3": "In Hand: 6C. In Head: AS 2C",
+                "5C5": "Empty",
+                "5C6": "Empty",
+                "5C8": "In Hand: 6C. In Head: 10C",
+                "7C0": "In Hand: 5C. In Head: AH 2H",
+                "7C1": "In Hand: 5C. In Head: AS 2S",
+                "7C3": "In Hand: 5C. In Head: 4C",
+                "7C5": "In Hand: 5C. In Head: 6H 10H",
+                "7C6": "In Hand: 5C. In Head: 6S 10S",
+                "7C8": "In Hand: 5C. In Head: 9C JC KC",
+                "7H0": "In Hand: 7C. In Head: 4H 5H",
+                "7H1": "In Hand: 7C. In Head: 4S 5S",
+                "7H3": "In Hand: 7C. In Head: 3C",
+                "7H5": "In Hand: 7C. In Head: 9H JH KH",
+                "7H6": "In Hand: 7C. In Head: 9S JS KS",
+                "7H8": "In Hand: 7C. In Head: 8C QC",
+                "9D0": "In Hand: 7H. In Head: 3S",
+                "9D1": "In Hand: 7H. In Head: AD 2D 6D",
+                "9D3": "In Hand: 7H. In Head: 3H",
+                "9D5": "In Hand: 7H. In Head: 8S QS",
+                "9D6": "In Hand: 7H. In Head: 10D",
+                "9D8": "In Hand: 7H. In Head: 8H QH",
+                "7D0": "Empty",
+                "7D1": "Empty",
+                "7D3": "In Hand: 9D. In Head: 4D 5D",
+                "7D5": "Empty",
+                "7D6": "Empty",
+                "7D8": "In Hand: 9D. In Head: JD KD",
+                "R0": "Empty",
+                "R1": "Empty",
+                "R3": "In Hand: 7D. In Head: 3D",
+                "R5": "Empty",
+                "R6": "Empty",
+                "R8": "In Hand: 7D. In Head: 8D QD"
+            };
+            return results[button1 + button2] || "No specific result";
+        }
+
+        function onButtonPress(buttonText) {
+            if (["5C", "7C", "7H", "9D", "7D", "R"].includes(buttonText)) {
+                button1Pressed = buttonText;
+                createButtons(["0", "1", "3", "5", "6", "8"], onResultButtonPress);
+            } else if (["0", "1", "3", "5", "6", "8"].includes(buttonText)) {
+                showResults(button1Pressed, buttonText);
+            }
+        }
+
+        function onResultButtonPress(buttonText) {
+            showResults(button1Pressed, buttonText);
+        }
+
+        function reset() {
+            button1Pressed = null;
+            createButtons(["5C", "7C", "7H", "9D", "7D", "R"], onButtonPress);
+
+            // Hide the results container
+            document.getElementById('results-container').style.display = 'none';
+        }
+    </script>
+</head>
+<body>
+    <div id="buttons-container"></div>
+    <div id="results-container" class="result" style="display: none;">
+        <div id="result-label"></div>
+    </div>
+    <div id="reset-button" onclick="reset()">Reset</div>
+    <script>
+        createButtons(["5C", "7C", "7H", "9D", "7D", "R"], onButtonPress);
+    </script>
+</body>
+</html> 

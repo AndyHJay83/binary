@@ -51,22 +51,33 @@
     </style>
     <script>
         let button1Pressed = null;
-        let touchStartY = 0;
-        let touchEndY = 0;
+        let touchStartY1 = 0;
+        let touchStartY2 = 0;
+        let touchEndY1 = 0;
+        let touchEndY2 = 0;
 
         // Add touch event listeners
         document.addEventListener('touchstart', function(e) {
-            touchStartY = e.touches[0].clientY;
+            if (e.touches.length === 2) {
+                touchStartY1 = e.touches[0].clientY;
+                touchStartY2 = e.touches[1].clientY;
+            }
         }, false);
 
         document.addEventListener('touchend', function(e) {
-            touchEndY = e.changedTouches[0].clientY;
-            handleSwipe();
+            if (e.changedTouches.length === 2) {
+                touchEndY1 = e.changedTouches[0].clientY;
+                touchEndY2 = e.changedTouches[1].clientY;
+                handleSwipe();
+            }
         }, false);
 
         function handleSwipe() {
-            const swipeDistance = touchStartY - touchEndY;
-            if (swipeDistance > 100) { // Minimum swipe distance
+            const swipeDistance1 = touchStartY1 - touchEndY1;
+            const swipeDistance2 = touchStartY2 - touchEndY2;
+            
+            // Check if both fingers swiped down at least 100px
+            if (swipeDistance1 > 100 && swipeDistance2 > 100) {
                 reset();
             }
         }
